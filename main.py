@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
@@ -10,6 +11,7 @@ load_dotenv()
 # Initialize OpenAI client with API key from environment variable
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route("/", methods=["POST"])
 def get_writing_skill():
